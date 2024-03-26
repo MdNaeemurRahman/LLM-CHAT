@@ -39,11 +39,16 @@ if 'memory' not in st.session_state:
 if 'vectorstore' not in st.session_state:
     st.session_state.vectorstore = Chroma(persist_directory='jj',
                         embedding_function=OllamaEmbeddings(
-                            model="mistral:instruct")
+                            # Here change `model=` name of the Model according to you wish
+                            
+                            model="mistral")
                         )
 if 'llm' not in st.session_state:
     st.session_state.llm = Ollama(base_url="http://localhost:11434",
-                model="mistral:instruct",
+
+                # Use same `model=` name as line 44
+                                  
+                model="mistral",
                 verbose=True,
                 callback_manager=CallbackManager(
                     [StreamingStdOutCallbackHandler()]),
@@ -53,7 +58,7 @@ if 'llm' not in st.session_state:
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
 
-st.title("PDF Chatbot")
+st.title("Run LLM MOdels For Analysing Your Personal Documents")
 
 # Upload a PDF file
 uploaded_file = st.file_uploader("Upload your PDF", type='pdf')
@@ -83,6 +88,8 @@ if uploaded_file is not None:
             # Create and persist the vector store
             st.session_state.vectorstore = Chroma.from_documents(
                 documents=all_splits,
+
+                # Change model name
                 embedding=OllamaEmbeddings(model="mistral")
             )
             st.session_state.vectorstore.persist()
