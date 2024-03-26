@@ -1,4 +1,4 @@
-# Forked from `SonicWarrior1/pdfchat`, I updated a few things for Human Element in Information Security Course Assistant
+Note: I updated a few things for Human Element in Information Security Course Assistant
 
 Local PDF Chat Application with Mistral 7B LLM, Langchain, Ollama, and Streamlit
 
